@@ -20,7 +20,7 @@ PROCEDURE Create(BucketCount:CARDINAL := 16;
     Ret.Buckets := NEW(BucketSeqSeq.T).init(BucketCount);
     
     FOR I := 0 TO BucketCount-1 DO
-      Ret.Buckets.addhi(NEW(BucketSeq.T).init(4));
+      Ret.Buckets.addhi(NEW(BucketSeq.T).init());
     END;
     
     RETURN Ret
