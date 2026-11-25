@@ -1,0 +1,24 @@
+local readonly proc _build_hashmap(name,key,value,visibility) is
+  local entry  = name & "Entry"
+  local seq    = entry & "Seq"
+  local seqseq = seq & "Seq"
+  local hm     = name & "HashMap"
+
+  % Entry interface (key/value pair):
+  build_generic_intf(entry,"Entry",[key,value],HIDDEN)
+
+  sequence(entry,entry)
+  sequence(seq,seq)
+
+  build_generic_intf(hm,"HashMap",[key,value],visibility)
+  build_generic_impl(hm,"HashMap",[key,value,entry,seq,seqseq])
+end
+
+readonly proc hashmap(name,key,value) is
+  _build_hashmap(name,key,value,HIDDEN)
+end
+
+readonly proc Hashmap(name,key,value) is
+  _build_hashmap(name,key,value,VISIBLE)
+end
+
