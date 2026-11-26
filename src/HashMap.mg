@@ -34,7 +34,7 @@ PROCEDURE Exists(HashMap:T;
   BEGIN
     FOR I := 0 TO B.size()-1 DO
       E := B.get(I);
-      IF KeyInt.Compare(E.Key,Key) = 0 THEN RETURN TRUE END
+      IF KeyInt.Equal(E.Key,Key) THEN RETURN TRUE END
     END;
     RETURN FALSE
   END Exists;
@@ -47,7 +47,7 @@ PROCEDURE Get(HashMap:T;
   BEGIN
     FOR I := 0 TO B.size()-1 DO
       E := B.get(I);
-      IF KeyInt.Compare(E.Key,Key) = 0 THEN RETURN E.Value END
+      IF KeyInt.Equal(E.Key,Key) THEN RETURN E.Value END
     END;
     RAISE NOT_FOUND
   END Get;
@@ -61,7 +61,7 @@ PROCEDURE Insert(HashMap:T;
   BEGIN
     FOR I := 0 TO B.size()-1 DO
       E := B.get(I);
-      IF KeyInt.Compare(E.Key,Key) = 0 THEN
+      IF KeyInt.Equal(E.Key,Key) THEN
         E.Value := Value;
         B.put(I,E);
         RETURN
@@ -85,7 +85,7 @@ PROCEDURE Delete(HashMap:T;
   BEGIN
     FOR I := 0 TO B.size()-1 DO
       E := B.get(I);
-      IF KeyInt.Compare(E.Key,Key) = 0 THEN
+      IF KeyInt.Equal(E.Key,Key) THEN
         B.put(I,B.get(B.size()-1));
         EVAL B.remhi();
         DEC(HashMap.Size);
@@ -105,7 +105,7 @@ PROCEDURE Update(HashMap:T;
   BEGIN
     FOR I := 0 TO B.size()-1 DO
       E := B.get(I);
-      IF KeyInt.Compare(E.Key,Key) = 0 THEN
+      IF KeyInt.Equal(E.Key,Key) THEN
         E.Value := Value;
         B.put(I,E);
         RETURN TRUE
